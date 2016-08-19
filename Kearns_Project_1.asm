@@ -61,7 +61,7 @@ main PROC
 	finit
 	fnstcw contWord		;Store control word in WORD contWord.
 	mov ax, contWord
-	or ax, 03h		;Set rounding control to round to 3 hex (2nd operand) [The bitwise 'or' not yet fully understood.]
+	or ax, 03h		;Set rounding control to round to 3 hex (2nd operand).
 	mov contWord, ax
 	fldcw contWord		;Load control word
 
