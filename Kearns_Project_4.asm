@@ -1,9 +1,9 @@
-TITLE Program 4 Composite Numbers by Chris Kearns (Program4_kearnsc.asm)
+TITLE Program 4 Composite Numbers by Chris Kearns (Kearns_Project_4.asm)
 
 ; Author: Chris Kearns
-; CS-271_400_S2016 / Project 4	Date: 8 May 2016
+; Date: 8 May 2016
 ; Description: MASM program to perform the following tasks:
-; Displays the program title and programmer’s name.
+; Displays the program title and programmerâ€™s name.
 ; Displays instructions for the user.
 ; Repeatedly prompts the user to enter an in range number.
 ; Validates the user's input to be in [1, 1,000,000] (inclusive).
@@ -35,8 +35,8 @@ INCLUDE Irvine32.inc
 	userMsg_L	Byte		" is not a composite number and has no",0dh,0ah
 			BYTE		"preceeding composite numbers. :(",0dh,0ah,0
 	userMsg_Z	BYTE		"Thank you for trying The Composite Number Generator!",0dh,0ah,0dh,0ah,0
-	spacer	BYTE		" ",0	; 1 space
-	again_	BYTE		"Bartender in The Fifth Element: You want some more?",0dh,0ah
+	spacer		BYTE		" ",0	; 1 space
+	again_		BYTE		"Bartender in The Fifth Element: You want some more?",0dh,0ah
 			BYTE		"Enter 1 for yes, any other int for quit: ",0
 
 	EC_1		BYTE		"**EC-1: Output is aligned in columns.",0dh,0ah,0dh,0ah,0
@@ -51,14 +51,14 @@ INCLUDE Irvine32.inc
 			BYTE		"  sequences upto user entered int via divide by primes to n/2.",0dh,0ah,0dh,0ah,0
 
 ; Variable Declarations.
-	userInt	DWORD	0				; User inputed variable.
-	counter	DWORD	1				; Our sequence variable used in showComposites loop for Cr at multiples of 5.
-	aCompInt	DWORD	0				; Boolean result generated from isComposite Process.
-	intInQue	DWORD	4				; Variable passed to isComposite for testing, set to 4 as 1,2, & 3 are special cases.
+	userInt		DWORD	0		; User inputed variable.
+	counter		DWORD	1		; Our sequence variable used in showComposites loop for Cr at multiples of 5.
+	aCompInt	DWORD	0		; Boolean result generated from isComposite Process.
+	intInQue	DWORD	4		; Variable passed to isComposite for testing, set to 4 as 1,2, & 3 are special cases.
 	arrPrime	DWORD	NUMPRIME dup(?)	; Array to store primes from 0 to HIGHLIM = 0F4240h (there's a few extra).
-	arrCount	DWORD	8				; Index count for arrPrime[] set to 8, as we manually initialize arrPrime for base case 2&3.
-	increment	DWORD	TYPE DWORD		; Instead of the literal 4, so program can be modifed later as needed.
-	arrItr	DWORD	increment			; Iterator for walking through arrPrime set to first element.
+	arrCount	DWORD	8		; Index count for arrPrime[] set to 8, as we manually initialize arrPrime for base case 2&3.
+	increment	DWORD	TYPE DWORD	; Instead of the literal 4, so program can be modifed later as needed.
+	arrItr		DWORD	increment	; Iterator for walking through arrPrime set to first element.
 
 .code
 main PROC
@@ -70,7 +70,7 @@ main PROC
 		cmp	eax, 1
 		je	again
 		call	farewell
-	exit								; Exit to operating system
+	exit					; Exit to operating system
 main ENDP
 
 ;****************************************************************************
