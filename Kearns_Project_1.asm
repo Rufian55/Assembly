@@ -17,8 +17,8 @@ ExitProcess PROTO, dwExitCode:DWORD
 
 ;(Variable Definitions)
 .data
-	banner	BYTE		"Welcome to Kearns_Project_1.asm by Chris Kearns.",13,10,13,10,0	;[1]
-	intro_1	BYTE		"Enter two numbers, and I'll show you the sum,",13,10
+	banner		BYTE		"Welcome to Kearns_Project_1.asm by Chris Kearns.",13,10,13,10,0	;[1]
+	intro_1		BYTE		"Enter two numbers, and I'll show you the sum,",13,10
 			BYTE		"difference, product, quotient and remainder!",13,10,13,10,0
 	prompt_1	BYTE		"Please enter your first positive integer: ",0
 	prompt_2	BYTE		"Please enter your second positive integer: ",0
@@ -34,20 +34,20 @@ ExitProcess PROTO, dwExitCode:DWORD
 	result_R	DWORD	0							;Remainder
 	result_FP	REAL4	0.0							;Floating Point
 	plus		BYTE		" + ",0
-	minus	BYTE		" - ",0
-	times	BYTE		" x ",0
-	divide	BYTE		" ö ",0						;ALT 0246 generates "÷"
-	equals	BYTE		" = ",0
+	minus		BYTE		" - ",0
+	times		BYTE		" x ",0
+	divide		BYTE		" Ã¶ ",0						;ALT 0246 generates "Ã·"
+	equals		BYTE		" = ",0
 	ore		BYTE		" or ",0
 	remainder	BYTE		" remainder ",0
 	calcAgain	BYTE		"Calculate another? Enter 1 for yes, any other int for quit.",13,10,0
-	yesNo	DWORD	0
-	sayBye	BYTE		"Darth Vader: Impressive! Goodbye.",13,10,0
+	yesNo		DWORD	0
+	sayBye		BYTE		"Darth Vader: Impressive! Goodbye.",13,10,0
 	eCredit_1	BYTE		"Program repeats until user user chooses to quit.",13,10,13,10,0
 	eCredit_2	BYTE		"Program calculates and displays the quotient as a float rounded to .001",13,10,13,10,0
 	eCredit_3	BYTE		"Program verifies second number less than the first and has user",13,10
 			BYTE		"re-enter until corrected.",13,10,13,10,0
-	eCredit_4 BYTE		"Program inhibits divide by 0 in all cases and has user re-enter until",13,10
+	eCredit_4 	BYTE		"Program inhibits divide by 0 in all cases and has user re-enter until",13,10
 			BYTE		"corrected.",13,10,13,10,0
 	eCredit_5	BYTE		"Program allows second number > first if first number == 0.",13,10,13,10,0	
 	contWord	WORD		?
@@ -59,16 +59,16 @@ main PROC
 
 ;Initialize the FPU and set for 3 place rounding. See citation [3]
 	finit
-	fnstcw contWord	;Store control word in WORD contWord.
+	fnstcw contWord		;Store control word in WORD contWord.
 	mov ax, contWord
 	or ax, 03h		;Set rounding control to round to 3 hex (2nd operand) [The bitwise 'or' not yet fully understood.]
 	mov contWord, ax
 	fldcw contWord		;Load control word
 
 ;Introduction.
-	mov	EDX, OFFSET	banner
+	mov EDX, OFFSET	banner
 	call writeString
-	mov	EDX, OFFSET	eCredit_1
+	mov EDX, OFFSET	eCredit_1
 	call writeString
 	mov EDX, OFFSET	eCredit_2
 	call writeString
@@ -78,164 +78,164 @@ main PROC
 	call writeString
 	mov EDX, OFFSET	eCredit_5
 	call writeString
-	mov	EDX,	OFFSET	intro_1
+	mov EDX, OFFSET	intro_1
 	call writeString
 
 top:		;Calculate another selected by user.
 
 ;Get the data.
-	mov	EDX, OFFSET	prompt_1
+	mov EDX, OFFSET	prompt_1
 	call writeString
 	call ReadInt
-	mov	firstNum, EAX
-	mov	EDX, OFFSET	prompt_2
-	call	writeString
-	call	ReadInt
-	mov	secondNum, EAX
+	mov firstNum, EAX
+	mov EDX, OFFSET	prompt_2
+	call writeString
+	call ReadInt
+	mov secondNum, EAX
 
-;Limit user from attempting 0 ÷ 0.
-	mov	EAX, 0
-	cmp	EAX, firstNum
-	je	firstNumZero
+;Limit user from attempting 0 Ã· 0.
+	mov EAX, 0
+	cmp EAX, firstNum
+	je firstNumZero
 
 ;Limit user from entering second number > than first on 1st and subsequent attempts.
 sec2low2:
-	mov	EAX,	firstNum
-	cmp	EAX,	secondNum
-	jb	sec2low
-	jmp	secOK
+	mov EAX, firstNum
+	cmp EAX, secondNum
+	jb sec2low
+	jmp secOK
 
 sec2low:
-	mov	EDX,	OFFSET	prompt_3
+	mov EDX, OFFSET	prompt_3
 	call writeString
-	call	ReadInt
-	mov	secondNum, EAX
-	jmp	sec2low2
+	call ReadInt
+	mov secondNum, EAX
+	jmp sec2low2
 
 secOK:	;End limit user from entering second number > than first.
 
 ;Limit user from incurring a divide by zero condition.
 divzero:
-	mov	EAX, secondNum
-	cmp	EAX,0
-	je	secIsZero
-	jmp	secNotZero
+	mov EAX, secondNum
+	cmp EAX, 0
+	je secIsZero
+	jmp secNotZero
 
 secIsZero:
-	mov	EDX, OFFSET	prompt_4
+	mov EDX, OFFSET	prompt_4
 	call writeString
 	call ReadInt
-	mov	secondNum, EAX
-	jmp	divZero
+	mov secondNum, EAX
+	jmp divZero
 
 ;Check again for secondNum > firstNum.
 secNotZero:
-	mov	EAX,	firstNum
-	cmp	EAX,	secondNum
-	jb	sec2low
+	mov EAX, firstNum
+	cmp EAX, secondNum
+	jb sec2low
 
 firstNumZero:	;So we allow a secondNum > than firstNum but still not zero.
-	mov	EAX, secondNum
-	cmp	EAX, 0
-	je	secNumGTF		;second_Number_Greater_Than_First
-	jmp	firstNumNotZero
+	mov EAX, secondNum
+	cmp EAX, 0
+	je secNumGTF		;second_Number_Greater_Than_First
+	jmp firstNumNotZero
 
 secNumGTF:
-	mov	EDX,	OFFSET	prompt_5
+	mov EDX, OFFSET	prompt_5
 	call writeString
 	call readInt
-	cmp	EAX, 0
-	je	firstNumZero
-	mov	secondNum, EAX
+	cmp EAX, 0
+	je firstNumZero
+	mov secondNum, EAX
 
 firstNumNotZero:
 
 ;Calculate the required results.
 
 ;Addition.
-	mov	EAX, firstNum
-	add	EAX, secondNum
-	mov	result_1, EAX
+	mov EAX, firstNum
+	add EAX, secondNum
+	mov result_1, EAX
 
 ;Subtration.
-	mov	EAX, firstNum
-	sub	EAX,	secondNum
-	mov	result_2, EAX
+	mov EAX, firstNum
+	sub EAX, secondNum
+	mov result_2, EAX
 
 ;Multiplication.
-	mov	EAX, firstNum
-	mov	EBX,	secondNum
-	mul	EBX
-	mov	result_3,	EAX
+	mov EAX, firstNum
+	mov EBX, secondNum
+	mul EBX
+	mov result_3, EAX
 
 ;Division. [2]
-	mov	EAX, firstNum
-	mov	EDX, 0
-	mov	EBX, secondNum
-	div	EBX
-	mov	result_Q, EAX
-	mov	result_R,	EDX
+	mov EAX, firstNum
+	mov EDX, 0
+	mov EBX, secondNum
+	div EBX
+	mov result_Q, EAX
+	mov result_R, EDX
 
 ;FPU Division. [3]
-	fld	firstNum
-	fld	secondNum
+	fld firstNum
+	fld secondNum
 	fdiv
-	fst	result_FP		;capture div result but don't pop the FPU stack
+	fst result_FP		;capture div result but don't pop the FPU stack
 
 ;Display the results.
 	call CrLf
 ;Display Addition
-	mov	EAX, firstNum
+	mov EAX, firstNum
 	call writeDec
-	mov	EDX, OFFSET	plus
-	call	writeString
-	mov	EAX, secondNum
-	call	writeDec
-	mov	EDX, OFFSET	equals
-	call	writeString
-	mov	EAX,	result_1
-	call	writeDec
+	mov EDX, OFFSET	plus
+	call writeString
+	mov EAX, secondNum
+	call writeDec
+	mov EDX, OFFSET	equals
+	call writeString
+	mov EAX, result_1
+	call writeDec
 	call CrLf
 
 ;Display Subtraction
-	mov	EAX, firstNum
+	mov EAX, firstNum
 	call writeDec
-	mov	EDX, OFFSET	minus
-	call	writeString
-	mov	EAX, secondNum
-	call	writeDec
-	mov	EDX, OFFSET	equals
-	call	writeString
-	mov	EAX,	result_2
-	call	writeInt		;writeInt so -result_2 displays correctly.
+	mov EDX, OFFSET	minus
+	call writeString
+	mov EAX, secondNum
+	call writeDec
+	mov EDX, OFFSET	equals
+	call writeString
+	mov EAX, result_2
+	call writeInt		;writeInt so -result_2 displays correctly.
 	call CrLf
 
 ;Display Multiplication
-	mov	EAX, firstNum
+	mov EAX, firstNum
 	call writeDec
-	mov	EDX, OFFSET	times
-	call	writeString
-	mov	EAX, secondNum
-	call	writeDec
-	mov	EDX, OFFSET	equals
-	call	writeString
-	mov	EAX,	result_3
-	call	writeDec
+	mov EDX, OFFSET	times
+	call writeString
+	mov EAX, secondNum
+	call writeDec
+	mov EDX, OFFSET	equals
+	call writeString
+	mov EAX, result_3
+	call writeDec
 	call CrLf
 
 ;Display Division
-	mov	EAX, firstNum
+	mov EAX, firstNum
 	call writeDec
-	mov	EDX, OFFSET	divide
-	call	writeString
-	mov	EAX, secondNum
-	call	writeDec
-	mov	EDX, OFFSET	equals
-	call	writeString
-	mov	EAX,	result_Q
-	call	writeDec
-	mov	EDX, OFFSET	remainder
-	call	writeString
+	mov EDX, OFFSET	divide
+	call writeString
+	mov EAX, secondNum
+	call writeDec
+	mov EDX, OFFSET	equals
+	call writeString
+	mov EAX, result_Q
+	call writeDec
+	mov EDX, OFFSET	remainder
+	call writeString
 	mov EAX, result_R
 	call writeDec
 	mov EDX, OFFSET	ore
@@ -249,15 +249,15 @@ firstNumNotZero:
 	call CrLf
 
 ;Poll user for calcAgain?
-	mov	EDX, OFFSET	calcAgain
+	mov EDX, OFFSET	calcAgain
 	call writeString
 	call readInt
-	cmp	EAX, 1
-	je	top	
+	cmp EAX, 1
+	je top	
 
 ;Say goodbye.
 	call CrLf
-	mov	EDX, OFFSET	sayBye
+	mov EDX, OFFSET	sayBye
 	call WriteString
 
 	INVOKE ExitProcess,0
