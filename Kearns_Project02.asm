@@ -5,7 +5,7 @@ TITLE Program #2	(Kearns_Project02.asm)
 ; Description: Program calculates Fibonacci numbers.
 ;   Displays program title, programmer’s name, gets user’s name, and greets user.
 ;   Prompts user to enter number of Fibonacci terms to be displayed.
-;   Advises user to enter an integer in the range [1 .. 46].
+;   Advises user to enter an integer in the range [1 ... 46].
 ;   Gets and validate user input (n).
 ;   Calculates and displays Fibonacci numbers from 1 to nth term inclusive.
 ;   Results displayed 5 terms per line with 5 spaces between terms.
