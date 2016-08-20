@@ -1,4 +1,4 @@
-TITLE Program 4 Composite Numbers by Chris Kearns (Kearns_Project_4.asm)
+TITLE Program 4 Composite Numbers by Chris Kearns (Project_04.asm)
 
 ; Author: Chris Kearns
 ; Date: 8 May 2016
@@ -20,7 +20,7 @@ INCLUDE Irvine32.inc
 
 .data
 ; Message Strings.
-	userMsg_1	BYTE		"Welcome to Kearns_Project04.asm by Chris Kearns",0dh,0ah
+	userMsg_1	BYTE		"Welcome to Project_04.asm by Chris Kearns",0dh,0ah
 			BYTE		"aka, The Composite Number Generator",0dh,0ah,0dh,0ah
 			BYTE		"If you enter a positive integer in the range of [",0
 	userMsg_2	BYTE		", ",0
@@ -39,15 +39,15 @@ INCLUDE Irvine32.inc
 	again_		BYTE		"Bartender in The Fifth Element: You want some more?",0dh,0ah
 			BYTE		"Enter 1 for yes, any other int for quit: ",0
 
-	EC_1		BYTE		"**EC-1: Output is aligned in columns.",0dh,0ah,0dh,0ah,0
-	EC_2		BYTE		"**EC-2: Scrolls Display every 23 lines. As such, please note:",0dh,0ah
+	EC_1		BYTE		"Output is aligned in columns.",0dh,0ah,0dh,0ah,0
+	EC_2		BYTE		"Scrolls Display every 23 lines. As such, please note:",0dh,0ah
 			BYTE		"  1. Upper Limit set 1,000,000.",0dh,0ah
 			BYTE		"  2. Composites are displayed 5 per line (6, 7, 8, & 9 seem less useful).",0dh,0ah
 			BYTE		"  3. Composites are seperated by 1 space and a tab.",0dh,0ah,0dh,0ah,0
-	EC_3		BYTE		"**EC-3: An extra: User offered opportunity to continue until quit.",0dh,0ah,0dh,0ah,0
-	EC_4		BYTE		"**EC-4: Creative use of color.",0dh,0ah,0dh,0ah,0
-	EC_5		BYTE		"**EC-5: Special handling routine & message for valid userInt < 4.",0dh,0ah,0dh,0ah,0
-	EC_6		BYTE		"**EC-6: Generated Primes saved as array and used to process int",0dh,0ah
+	EC_3		BYTE		"An extra: User offered opportunity to continue until quit.",0dh,0ah,0dh,0ah,0
+	EC_4		BYTE		"Creative use of color.",0dh,0ah,0dh,0ah,0
+	EC_5		BYTE		"Special handling routine & message for valid userInt < 4.",0dh,0ah,0dh,0ah,0
+	EC_6		BYTE		"Generated Primes saved as array and used to process int",0dh,0ah
 			BYTE		"  sequences upto user entered int via divide by primes to n/2.",0dh,0ah,0dh,0ah,0
 
 ; Variable Declarations.
@@ -62,15 +62,15 @@ INCLUDE Irvine32.inc
 
 .code
 main PROC
-		call	introduction
-	again:
-		call	getUserData
-		call	showComposites
-		call	goAgain
-		cmp	eax, 1
-		je	again
-		call	farewell
-	exit					; Exit to operating system
+	call introduction
+again:
+	call getUserData
+	call showComposites
+	call goAgain
+	cmp eax, 1
+	je again
+	call farewell
+exit					; Exit to operating system
 main ENDP
 
 ;****************************************************************************
@@ -81,36 +81,36 @@ main ENDP
 ; Registers changed: eax, edx
 ;****************************************************************************
 introduction	PROC
-	mov	edx,	OFFSET	userMsg_1
-	call	writeString
-	mov	eax, LOWLIM
-	call	writeDec
-	mov	edx,	OFFSET	userMsg_2
-	call	writeString
-	mov	eax, HIGHLIM
-	call	writeDec
-	mov	edx,	OFFSET	userMsg_3
-	call	writeString
-	mov	eax,	LOWLIM
-	call	writeDec
-	mov	edx,	OFFSET	userMsg_4
-	call	writeString
-	mov	eax, 14
-	call	setTextColor
-	mov	edx,	OFFSET	EC_1
-	call	writeString
-	mov	edx,	OFFSET	EC_2
-	call	writeString
-	mov	edx,	OFFSET	EC_3
-	call	writeString
-	mov	edx,	OFFSET	EC_4
-	call	writeString
-	mov	edx,	OFFSET	EC_5
-	call	writeString
-	mov	edx,	OFFSET	EC_6
-	call	writeString
-	mov	eax,	7
-	call	setTextColor
+	mov edx, OFFSET	userMsg_1
+	call writeString
+	mov eax, LOWLIM
+	call writeDec
+	mov edx, OFFSET	userMsg_2
+	call writeString
+	mov eax, HIGHLIM
+	call writeDec
+	mov edx, OFFSET	userMsg_3
+	call writeString
+	mov eax, LOWLIM
+	call writeDec
+	mov edx, OFFSET	userMsg_4
+	call writeString
+	mov eax, 14
+	call setTextColor
+	mov edx, OFFSET	EC_1
+	call writeString
+	mov edx, OFFSET	EC_2
+	call writeString
+	mov edx, OFFSET	EC_3
+	call writeString
+	mov edx, OFFSET	EC_4
+	call writeString
+	mov edx, OFFSET	EC_5
+	call writeString
+	mov edx, OFFSET	EC_6
+	call writeString
+	mov eax, 7
+	call setTextColor
 	ret
 introduction	ENDP
 
@@ -123,19 +123,19 @@ introduction	ENDP
 ; Registers changed: eax, edx
 ;****************************************************************************
 getUserData	PROC
-	mov	edx,offset	userMsg_5
-	call	writeString
-	mov	eax,	LOWLIM
-	call	writeDec
-	mov	edx,	OFFSET	userMsg_2
-	call	writeString
-	mov	eax,	HIGHLIM
-	call	writeDec
-	mov	edx,	OFFSET	userMsg_6
-	call	writeString
-	call	readInt
-	mov	userInt, eax
-	call	validate						; Procedure call to validate user data.
+	mov edx, OFFSET	userMsg_5
+	call writeString
+	mov eax, LOWLIM
+	call writeDec
+	mov edx, OFFSET	userMsg_2
+	call writeString
+	mov eax, HIGHLIM
+	call writeDec
+	mov edx, OFFSET	userMsg_6
+	call writeString
+	call readInt
+	mov userInt, eax
+	call validate			; Procedure call to validate user data.
 	ret
 getUSerData	ENDP
 
@@ -147,19 +147,19 @@ getUSerData	ENDP
 ; Subroutines:	getUSerData
 ; Registers changed: edx
 ;****************************************************************************
-validate		PROC
-		cmp	eax, LOWLIM
-		jl	error
-		cmp	eax,	HIGHLIM
-		jg	error
-		jmp	noError
-	error:
-		mov	edx, OFFSET	userMsg_E
-		call	writeString
-		call	getUSerData				; Re-call procedure due to out of range user input.
-	noError:
+validate	PROC
+	cmp eax, LOWLIM
+	jl error
+	cmp eax, HIGHLIM
+	jg error
+	jmp noError
+error:
+	mov edx, OFFSET	userMsg_E
+	call writeString
+	call getUSerData				; Re-call procedure due to out of range user input.
+noError:
 	ret
-validate		ENDP
+validate 	ENDP
 
 ;****************************************************************************
 ; Procedure to display valid composites in formatted style.
@@ -170,57 +170,57 @@ validate		ENDP
 ; Registers changed: eax, ebx, ecx, edx
 ;****************************************************************************
 showComposites	PROC
-		mov	eax, userInt				; Handle base case of valid userInt < 4.
-		cmp	eax,	3
-		jg	print
-		call is_1_2or3					; Procedure call to display special message.
-		jmp	done
-	print:
-		mov	eax, 2					; Initialize arrPrime[] with base case primes 2 and 3.
-		mov	arrPrime[4], eax
-		mov	eax, 3
-		mov	arrPrime[8], eax
-		mov	ecx,	userInt
-	top:
-		pushad
-		call	isComposite				; Procedure call, returns bool 1 or 0.
-		popad
-		mov	eax, aCompInt
-		cmp	aCompInt, 1
-		jnz	noPrint
-		mov	edx, OFFSET	spacer
-		call writeString
-		mov	eax, intInQue
-		call	writeDec
-		mov al, TAB
-		call writeChar
-		mov	eax,	counter				; Begin test for EOL
-		inc	counter
-		mov	ebx, 5					; Change here for composites per line.
-		cdq
-		div	ebx
-		cmp	edx, 0
-		je	printEOL
-		jmp	noPrint
-	printEOL:
-		call CrLf
-		mov	eax, counter				; Begin test for freeze results display
-		dec	eax
-		mov	ebx, 23					; Change here for different lines per page display - 23 fits default window.
-		cdq
-		div	ebx
-		cmp	edx, 0
-		je	freeze
-		jmp	noPrint
-	freeze:							; Page scroll display message.
-		call WaitMsg
-		call	CrLf
-	noPrint:							; intInQue was a prime.
-		inc	intInQue
-		cmp	ecx, 4					; Interupt the ecx countdown as < 4 is handled by is1_2or3 procedure.
-		je	done
-		loop	top
-	done:
+	mov eax, userInt			; Handle base case of valid userInt < 4.
+	cmp eax, 3
+	jg print
+	call is_1_2or3				; Procedure call to display special message.
+	jmp done
+print:
+	mov eax, 2				; Initialize arrPrime[] with base case primes 2 and 3.
+	mov arrPrime[4], eax
+	mov eax, 3
+	mov arrPrime[8], eax
+	mov ecx, userInt
+top:
+	pushad
+	call isComposite			; Procedure call, returns bool 1 or 0.
+	popad
+	mov eax, aCompInt
+	cmp aCompInt, 1
+	jnz noPrint
+	mov edx, OFFSET	spacer
+	call writeString
+	mov eax, intInQue
+	call writeDec
+	mov al, TAB
+	call writeChar
+	mov eax, counter			; Begin test for EOL
+	inc counter
+	mov ebx, 5				; Change here for composites per line.
+	cdq
+	div ebx
+	cmp edx, 0
+	je printEOL
+	jmp noPrint
+printEOL:
+	call CrLf
+	mov eax, counter			; Begin test for freeze results display
+	dec eax
+	mov ebx, 23				; Change here for different lines per page display - 23 fits default window.
+	cdq
+	div ebx
+	cmp edx, 0
+	je freeze
+	jmp noPrint
+freeze:						; Page scroll display message.
+	call WaitMsg
+	call CrLf
+noPrint:					; intInQue was a prime.
+	inc intInQue
+	cmp ecx, 4				; Interupt the ecx countdown as < 4 is handled by is1_2or3 procedure.
+	je done
+	loop top
+done:
 	ret
 showComposites	ENDP
 
@@ -232,40 +232,39 @@ showComposites	ENDP
 ; Registers changed: eax, ebx, ecx, edx, edi
 ;****************************************************************************
 isComposite	PROC
-		mov	eax, increment			; Reset array Iterator. 		
-		mov	arrItr, eax
-
-		mov	eax, arrCount			; Divide arrCount (BYTE) by increment for ecx counter.
-		mov	ebx,	increment
-		cdq
-		div	ebx
-		mov	ecx,	eax				; ecx now contains the maximum times to iterate intInQue to conclude "it's prime".
-	isCompStart:
-		mov	aCompInt, 0			; Default to false.
-		mov	eax, intInQue
-		mov	edi,	arrItr
-		mov	ebx, arrPrime[edi]		; Starts at 2, 3, 5, 7, 11, etc. which gets vast majority of composites early.  
-		cdq
-		div	ebx
-		cmp	edx, 0
-		je	True_
-		cmp	ecx, 1				; Interupt the ecx countdown to avoid division by 1, else always returns true.
-		je	False_
-		mov	eax,	increment
-		add arrItr, eax
-		loop	isCompStart
-		jmp	False_
-	True_:
-		mov	aCompInt, 1
-		jmp	finish	
-	False_:						; It's a prime, so we must add it to arrPrime[] at the correct index location.
-		mov	eax, increment
-		add	arrCount, eax
-		mov	eax, intInQue
-		mov	ebx, arrCount
-		mov	arrPrime[ebx], eax
-	finish:
-		ret
+	mov eax, increment		; Reset array Iterator. 		
+	mov arrItr, eax
+	mov eax, arrCount		; Divide arrCount (BYTE) by increment for ecx counter.
+	mov ebx, increment
+	cdq
+	div ebx
+	mov ecx, eax			; ecx now contains the maximum times to iterate intInQue to conclude "it's prime".
+isCompStart:
+	mov aCompInt, 0			; Default to false.
+	mov eax, intInQue
+	mov edi, arrItr
+	mov ebx, arrPrime[edi]		; Starts at 2, 3, 5, 7, 11, etc. which gets vast majority of composites early.  
+	cdq
+	div ebx
+	cmp edx, 0
+	je True_
+	cmp ecx, 1			; Interupt the ecx countdown to avoid division by 1, else always returns true.
+	je False_
+	mov eax, increment
+	add arrItr, eax
+	loop isCompStart
+	jmp False_
+True_:
+	mov aCompInt, 1
+	jmp finish	
+False_:					; It's a prime, so we must add it to arrPrime[] at the correct index location.
+	mov eax, increment
+	add arrCount, eax
+	mov eax, intInQue
+	mov ebx, arrCount
+	mov arrPrime[ebx], eax
+finish:
+	ret
 isComposite	ENDP
 
 ;****************************************************************************
@@ -275,16 +274,16 @@ isComposite	ENDP
 ; Preconditions: validated userInt == 1, 2, or 3
 ; Registers changed: eax, edx
 ;****************************************************************************
-is_1_2or3		PROC
-		call	CrLf
-		mov	edx,	OFFSET	userMsg_K
-		call	writeString
-		mov	eax,	userInt
-		call	writeDec
-		mov	edx,	OFFSET	userMsg_L
-		call	writeString
+is_1_2or3	PROC
+	call CrLf
+	mov edx, OFFSET	userMsg_K
+	call writeString
+	mov eax, userInt
+	call writeDec
+	mov edx, OFFSET	userMsg_L
+	call writeString
 	ret
-is_1_2or3		ENDP
+is_1_2or3	ENDP
 
 ;****************************************************************************
 ; Procedure to offer user chance to run program again.
@@ -294,18 +293,18 @@ is_1_2or3		ENDP
 ; Registers changed: eax, edx
 ;****************************************************************************
 goAgain	PROC
-	mov	counter, 1			; resets counter.
-	mov	aCompInt, 0			; resets aCompInt.
-	mov	intInQue, 4			; resets intInQue.
-	mov	arrCount, 8			; resets arrCount
-	mov	eax, increment
-	mov	arrItr, eax			; resets arrItr
+	mov counter, 1			; resets counter.
+	mov aCompInt, 0			; resets aCompInt.
+	mov intInQue, 4			; resets intInQue.
+	mov arrCount, 8			; resets arrCount
+	mov eax, increment
+	mov arrItr, eax			; resets arrItr
 	call CrLf
-	mov	edx, OFFSET	again_
-	mov	eax, 12
+	mov edx, OFFSET	again_
+	mov eax, 12
 	call setTextColor
 	call writeString
-	mov	eax, 7
+	mov eax, 7
 	call setTextColor
 	call readInt
 	ret
@@ -318,16 +317,16 @@ goAgain	ENDP
 ; Preconditions: Composites displayed.
 ; Registers changed: eax, edx
 ;****************************************************************************
-farewell		PROC
-		call	CrLf
-		call CrLf
-		mov	edx,	OFFSET	userMsg_Z
-		mov	eax, 10
-		call setTextColor
-		call	writeString
-		mov	eax, 7
-		call	setTextColor
+farewell	PROC
+	call CrLf
+	call CrLf
+	mov edx, OFFSET	userMsg_Z
+	mov eax, 10
+	call setTextColor
+	call writeString
+	mov eax, 7
+	call setTextColor
 	ret
-farewell		ENDP
+farewell	ENDP
 
 END main
