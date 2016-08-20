@@ -1,4 +1,4 @@
-TITLE Program 3 Integer Accumulator by Chris Kearns (Kearns_Project_3.asm)
+TITLE Program 3 Integer Accumulator by Chris Kearns (Project_03.asm)
 
 ; Author: Chris Kearns
 ; Date: 1 May 2016
@@ -12,11 +12,11 @@ TITLE Program 3 Integer Accumulator by Chris Kearns (Kearns_Project_3.asm)
 ;    is entered. Non-negative numbers are discarded.
 ; Calculates the (rounded integer) average of the negative numbers.
 ; Displays:
-;	i.	The number of negative numbers entered (Note: if no negative numbers
+;	i. The number of negative numbers entered (Note: if no negative numbers
 ;		were entered, displays a special message and skips to iv.)
-;	ii.	The sum of negative numbers entered.
+;	ii. The sum of negative numbers entered.
 ;	iii. The average, rounded to the nearest integer (e.g. -20.5 rounds to -20).
-;	iv.	A parting message with the user’s name.
+;	iv. A parting message with the user’s name.
 
 INCLUDE Irvine32.inc
 
@@ -25,7 +25,7 @@ INCLUDE Irvine32.inc
 	LOWLIM	=	-100
 
 .data
-	intro_1		BYTE		"Welcome to ""Program3_kearnsc.asm"" by Chris Kearns",0dh,0ah
+	intro_1		BYTE		"Welcome to ""Program_03.asm"" by Chris Kearns",0dh,0ah
 			BYTE		"aka ""The Integer Accumulator""",0dh,0ah,0dh,0ah,0
 	EC_1		BYTE		"Number the lines during user input.",0dh,0ah,0dh,0ah,0
 	EC_2		BYTE		"Program displays the average as a float.",0dh,0ah,0dh,0ah,0
