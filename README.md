@@ -11,4 +11,4 @@ Kearns_Project_4.asm -> Composite number generator from 1 to 1,000,000.
 
 Kearns_Project_5.asm -> Displays user requested number of random ints in a range, displays the median, then sorts descending.
 
-Kearns_Project_6.asm -> Displays 10 validated ints, sum, and average, but the hard way, storing type int as string and converting with                           back to integer using Macros.
+Kearns_Project_6.asm -> Displays 10 validated ints, their sum and average, but the hard way, storing type int as string and converting  back to type integer using Macros.
