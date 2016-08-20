@@ -6,7 +6,7 @@ Date: 22 May 2016
  
 Description: Program accomplishes the following tasks:
 1. Introduces the program and instructions.
-2. Gets user requested for 3 of random ints: range [min = 10 .. max = 200].
+2. Gets user request for # of random ints: range [min = 10 .. max = 200].
 3. Generates requested random integers each in the range [lo = 100 .. hi = 999],
 	storing them in consecutive elements of an array.
 4. Displays the list of integers before sorting, 10 numbers per line.
