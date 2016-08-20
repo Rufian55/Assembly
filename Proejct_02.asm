@@ -1,4 +1,4 @@
-TITLE Program #2	(Kearns_Project_2.asm)
+TITLE Program #2	(Project_02.asm)
 
 ; Author: Chris Kearns
 ; Date: 17 Apr 2016
