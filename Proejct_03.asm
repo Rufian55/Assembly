@@ -12,11 +12,11 @@ TITLE Program 3 Integer Accumulator by Chris Kearns (Project_03.asm)
 ;    is entered. Non-negative numbers are discarded.
 ; Calculates the (rounded integer) average of the negative numbers.
 ; Displays:
-;	i.	The number of negative numbers entered (Note: if no negative numbers
+;	i. The number of negative numbers entered (Note: if no negative numbers
 ;		were entered, displays a special message and skips to iv.)
-;	ii.	The sum of negative numbers entered.
+;	ii. The sum of negative numbers entered.
 ;	iii. The average, rounded to the nearest integer (e.g. -20.5 rounds to -20).
-;	iv.	A parting message with the user’s name.
+;	iv. A parting message with the user’s name.
 
 INCLUDE Irvine32.inc
 
