@@ -59,11 +59,11 @@ main PROC
 
 ;Initialize the FPU and set for 3 place rounding. See citation [3]
 	finit
-	fnstcw contWord		;Store control word in WORD contWord.
+	fnstcw contWord				;Store control word in WORD contWord.
 	mov ax, contWord
-	or ax, 03h		;Set rounding control to round to 3 hex (2nd operand).
+	or ax, 03h				;Set rounding control to round to 3 hex (2nd operand).
 	mov contWord, ax
-	fldcw contWord		;Load control word
+	fldcw contWord				;Load control word
 
 ;Introduction.
 	mov EDX, OFFSET	banner
@@ -137,7 +137,7 @@ secNotZero:
 firstNumZero:	;So we allow a secondNum > than firstNum but still not zero.
 	mov EAX, secondNum
 	cmp EAX, 0
-	je secNumGTF		;second_Number_Greater_Than_First
+	je secNumGTF				;second_Number_Greater_Than_First
 	jmp firstNumNotZero
 
 secNumGTF:
@@ -180,7 +180,7 @@ firstNumNotZero:
 	fld firstNum
 	fld secondNum
 	fdiv
-	fst result_FP		;capture div result but don't pop the FPU stack
+	fst result_FP				;capture div result but don't pop the FPU stack
 
 ;Display the results.
 	call CrLf
@@ -207,7 +207,7 @@ firstNumNotZero:
 	mov EDX, OFFSET	equals
 	call writeString
 	mov EAX, result_2
-	call writeInt		;writeInt so -result_2 displays correctly.
+	call writeInt				;writeInt so -result_2 displays correctly.
 	call CrLf
 
 ;Display Multiplication
@@ -263,13 +263,4 @@ firstNumNotZero:
 	INVOKE ExitProcess,0
 main ENDP
 
-;(Additional Procedures)
-
 END main
-
-; [Citations]
-; [1] ",13,10,0" procedure found at: http://stackoverflow.com/questions/22090605/masm-how-do-you-declare-a-string-with-carriage-return
-;	 and table 1-8 of Assembly Language for x86 Processors, 7th edition, Irvine, 2015. [text]
-; [2] Justin Goins' div_tutorial.asm 10/11/12
-; [3] Deduced from [text], chapter 12, https://cs.fit.edu/~mmahoney/cse3101/float.html, and additionally,
-;	 http://stackoverflow.com/questions/23358537/assembly-round-floating-point-number-to-001-precision-toward-%E2%88%9E
