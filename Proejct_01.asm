@@ -1,4 +1,4 @@
-TITLE Program 1     (Kearns_Project_1.asm)
+TITLE Program 1     (Project_01.asm)
 
 ; Author: Chris Kearns (traveler-403@msn.com)
 ; Date: 10 April 2016
@@ -17,7 +17,7 @@ ExitProcess PROTO, dwExitCode:DWORD
 
 ;(Variable Definitions)
 .data
-	banner		BYTE		"Welcome to Kearns_Project_1.asm by Chris Kearns.",13,10,13,10,0	;[1]
+	banner		BYTE		"Welcome to Project_01.asm by Chris Kearns.",13,10,13,10,0
 	intro_1		BYTE		"Enter two numbers, and I'll show you the sum,",13,10
 			BYTE		"difference, product, quotient and remainder!",13,10,13,10,0
 	prompt_1	BYTE		"Please enter your first positive integer: ",0
@@ -57,7 +57,7 @@ ExitProcess PROTO, dwExitCode:DWORD
 .code
 main PROC
 
-;Initialize the FPU and set for 3 place rounding. See citation [3]
+;Initialize the FPU and set for 3 place rounding.
 	finit
 	fnstcw contWord				;Store control word in WORD contWord.
 	mov ax, contWord
@@ -241,7 +241,6 @@ firstNumNotZero:
 	mov EDX, OFFSET	ore
 	call writeString
 
-;See citation [3]
 	fimul thousand				;Multiply by 1000 to preserve 3 decimal digits of the fractional part
 	frndint					;Round to integer.
 	fidiv thousand				;Multiply by 1000 to recreate 3 decimal digits.
