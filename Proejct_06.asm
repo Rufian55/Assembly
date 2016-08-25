@@ -1,7 +1,7 @@
 TITLE Macro Demo      (Project_06.asm)
 
 Comment !
-Author: Chris Kearns			traveler-403@msn.com
+Author: Chris Kearns
 Date: 05 Jun 2016
 
 Description: Program gets 10 valid integers from a user and stores the
@@ -160,14 +160,14 @@ loopExtender:
 	jmp outerloop
 
 validate_convert:
-	lodsb					; eax gets 1 BYTE of user_str loaded in esi. **********[lodsb call is here]********** 
+	lodsb					; eax gets 1 BYTE of user_str loaded in esi.
 	cmp al, LOW_
 	jb reportError
 	cmp al, HIGH_
 	ja reportError 
 	sub al, LOW_
 
-	push eax				; See Citation 1 under Program Description above.
+	push eax
 	mov eax, ebx
 	mov ebx, 10
 	mul ebx
@@ -177,7 +177,7 @@ validate_convert:
 	loop validate_convert
 
 	mov eax, ebx				; Final answer!
-	cmp eax, MAXIN				; One last check for input too big to enable 32-bit division on the sum (line 328).
+	cmp eax, MAXIN				; One last check for input too big to enable 32-bit division in showSumAvg.
 	ja reportError
 
 	stosd					; Put user's int string (eax) into array loaded @edi.
@@ -272,7 +272,7 @@ convertInt:
 	jmp convertInt				; Loops until dividend in eax = 0.
 
 display:
-	pop ebx					; From line 264.
+	pop ebx
 	displayString [ebp+16]			; Print converted string in holder.
 	pop eax					; eax gets previously pushed ecx.
 	cmp eax, 1				; Don't print a trailing comma.
