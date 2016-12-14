@@ -1,5 +1,5 @@
 # x86 Assembly (MASM)
-x86 Assembly Demo Programs as follows:
+x86 Assembly Demo Programs, progressing from painfully verbose to almost efficient as follows:
 
 Project_01.asm -> Arithmetic operations and FPU division.
 
